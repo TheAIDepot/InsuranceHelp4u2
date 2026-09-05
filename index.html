@@ -11,36 +11,56 @@
 </head>
 	<body class="bg-gray-900 text-white font-sans">
     <!-- ===== PASSCODE ACCESS GATE ===== -->
-    <div id="site-gatekeeper" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #111111; z-index: 999999; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #ffffff; font-family: sans-serif; padding: 20px; box-sizing: border-box;">
-        <div style="max-width: 400px; width: 100%; background: #222222; padding: 40px 30px; border-radius: 12px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid #333333;">
-            
-            <!-- FIXED HEADING LINE HERE -->
-            <h2 style="margin: 0 0 10px 0; font-size: 22px; color: #30b4c5;">🔒 Authorized Access Only</h2>
-            
-            <p style="margin: 0 0 25px 0; font-size: 14px; color: #a0aec0;">Please enter your 5-digit access code to view available plans.</p>
-            <input type="password" id="gatekeeper-input" maxlength="5" placeholder="• • • • •" style="width: 100%; padding: 15px; font-size: 24px; text-align: center; letter-spacing: 8px; border: 2px solid #444444; border-radius: 8px; background: #111111; color: #ffffff; outline: none; margin-bottom: 20px; box-sizing: border-box;">
-            <button onclick="checkAccessCode()" style="width: 100%; padding: 14px; font-size: 16px; font-weight: bold; background: #ff7f27; color: #ffffff; border: none; border-radius: 8px; cursor: pointer; transition: background 0.2s;">Unlock Site</button>
-            <div id="gatekeeper-error" style="color: #ff4d4d; font-size: 14px; font-weight: bold; margin-top: 15px; display: none;">❌ Invalid Access Code. Try again.</div>
-        </div>
+<div id="site-gatekeeper" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #111111; z-index: 999999; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #ffffff; font-family: sans-serif; padding: 20px; box-sizing: border-box;">
+    <div style="max-width: 400px; width: 100%; background: #222222; padding: 40px 30px; border-radius: 12px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid #333333;" onclick="event.stopPropagation();">
+        <h2 style="margin: 0 0 10px 0; font-size: 22px; color: #30b4c5;">🔒 Authorized Access Only</h2>
+        <p style="margin: 0 0 25px 0; font-size: 14px; color: #a0aec0;">Please enter your 5-digit access code to view available plans.</p>
+        
+        <input type="password" id="gatekeeper-input" maxlength="5" placeholder="• • • • •" style="width: 100%; padding: 15px; font-size: 24px; text-align: center; letter-spacing: 8px; border: 2px solid #444444; border-radius: 8px; background: #111111; color: #ffffff; outline: none; margin-bottom: 20px; box-sizing: border-box;">
+        
+        <!-- FIXED: type="button" stops form reloads, and prevents default actions -->
+        <button type="button" id="unlock-btn" style="width: 100%; padding: 14px; font-size: 16px; font-weight: bold; background: #ff7f27; color: #ffffff; border: none; border-radius: 8px; cursor: pointer; transition: background 0.2s;">Unlock Site</button>
+        <div id="gatekeeper-error" style="color: #ff4d4d; font-size: 14px; font-weight: bold; margin-top: 15px; display: none;">❌ Invalid Access Code. Try again.</div>
     </div>
+</div>
 
 <script>
-function checkAccessCode() {
-    const input = document.getElementById("gatekeeper-input").value;
-    // CHANGE '12345' below to whatever 5-digit code you want to use!
-    if (input === "12345") {
-        document.getElementById("site-gatekeeper").style.display = "none";
-    } else {
-        document.getElementById("gatekeeper-error").style.display = "block";
-        document.getElementById("gatekeeper-input").value = "";
-    }
-}
-// Allow pressing the "Enter" key to submit the code
-document.getElementById("gatekeeper-input").addEventListener("keypress", function(event) {
-    if (event.key === "Enter") { checkAccessCode(); }
-});
-</script>
+(function() {
+    const inputField = document.getElementById("gatekeeper-input");
+    const unlockButton = document.getElementById("unlock-btn");
+    const gatePanel = document.getElementById("site-gatekeeper");
+    const errorDisplay = document.getElementById("gatekeeper-error");
 
+    function validateCode(e) {
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        
+        // CHANGE '12345' below to whatever your 5-digit passcode is!
+        if (inputField.value === "12345") {
+            gatePanel.style.style.setProperty('display', 'none', 'important');
+            gatePanel.remove(); // Completely removes the lock screen from the page layout smoothly
+        } else {
+            errorDisplay.style.display = "block";
+            inputField.value = "";
+            inputField.focus();
+        }
+    }
+
+    // Bind click event safely
+    unlockButton.addEventListener("click", validateCode);
+
+    // Bind Enter key event and block the browser from refreshing the page
+    inputField.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            event.stopPropagation();
+            validateCode(event);
+        }
+    });
+})();
+</script>
 
   <main class="min-h-screen flex flex-col items-center justify-center px-4 py-12">
     <div class="max-w-2xl text-center">
