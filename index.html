@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Peace of Mind – Protection Options</title>
-    <!-- Tailwind CSS CDN -->
+    <!-- Stable Tailwind CSS Compilation Layer -->
     <script src="https://tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cloudflare.com">
     <link href="https://googleapis.com" rel="stylesheet">
@@ -109,9 +109,8 @@
         function validateCode(e) {
             if (e) e.preventDefault();
             
-            // Checks code instantly without launching a browser reflow action
             if (inputField.value === "12345") {
-                gatePanel.remove(); // Drops layer cleanly
+                gatePanel.remove(); 
             } else {
                 errorDisplay.style.display = "block";
                 inputField.value = "";
