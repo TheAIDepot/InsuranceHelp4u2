@@ -28,3 +28,15 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+/* Top Announcement Banner Styling */
+.top-announcement-banner {
+    background-color: #1e293b; /* Dark professional slate blue (or change to your brand color) */
+    color: #ffffff;            /* White text */
+    text-align: center;        /* Centers the text */
+    padding: 10px 20px;        /* Spacing inside the banner */
+    font-size: 14px;           /* Clean, readable text size */
+    font-weight: 500;          /* Slightly bold text */
+    letter-spacing: 0.5px;
+    width: 100%;
+    box-sizing: border-box;
+}
