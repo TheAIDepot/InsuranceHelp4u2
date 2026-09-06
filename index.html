@@ -1,131 +1,117 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peace of Mind – Protection Options</title>
-    <!-- Stable Tailwind CSS Compilation Layer -->
-    <script src="https://tailwindcss.com"></script>
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="description" content="Critical protection when it matters most. Reach out to Richard – Senior Marketing Director – for a personalized review in minutes."> 
+    <title>Peace of Mind – Protection Options</title> 
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png"> 
+    <!-- FontAwesome for the PDF icons -->
     <link rel="stylesheet" href="https://cloudflare.com">
-    <link href="https://googleapis.com" rel="stylesheet">
-    <style>
-        body { font-family: 'Roboto', sans-serif; }
-    </style>
-</head>
-<body class="bg-gray-900 text-white font-sans">
+    <!-- Tailwind CSS for Layout and Styles -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> 
+</head> 
+<body class="bg-gray-900 text-white font-sans"> 
 
-    <!-- ===== PASSCODE ACCESS GATE ===== -->
-    <div id="site-gatekeeper" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0b0f19; z-index: 999999; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #ffffff; padding: 20px; box-sizing: border-box;">
-        <div style="max-width: 400px; width: 100%; background: #1f2937; padding: 40px 30px; border-radius: 12px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid #374151;">
-            <h2 style="margin: 0 0 10px 0; font-size: 24px; color: #30b4c5;">🔒 Authorized Access Only</h2>
-            <p style="margin: 0 0 25px 0; font-size: 15px; color: #9ca3af;">Please enter your 5-digit access code to view available plans.</p>
-            <input type="password" id="gatekeeper-input" maxlength="5" placeholder="Enter Code" style="width: 100%; padding: 12px; font-size: 18px; text-align: center; border: 2px solid #4b5563; border-radius: 8px; background: #111827; color: #ffffff; outline: none; margin-bottom: 20px; box-sizing: border-box;">
-            <button type="button" id="unlock-btn" style="width: 100%; padding: 14px; font-size: 16px; font-weight: bold; background: #ff7f27; color: #ffffff; border: none; border-radius: 8px; cursor: pointer;">Unlock Site</button>
-            <div id="gatekeeper-error" style="color: #ef4444; font-size: 14px; font-weight: bold; margin-top: 15px; display: none;">❌ Invalid Access Code. Try again.</div>
-        </div>
-    </div>
+    <!-- ===== PASSCODE ACCESS GATE ===== --> 
+    <div id="site-gatekeeper" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #111111; z-index: 999999; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #ffffff; font-family: sans-serif; padding: 20px; box-sizing: border-box;"> 
+        <div style="max-width: 400px; width: 100%; background: #222222; padding: 40px 30px; border-radius: 12px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid #333333;"> 
+            <h2 style="margin: 0 0 10px 0; font-size: 22px; color: #30b4c5;">🔒 Authorized Access Only</h2> 
+            <p style="margin: 0 0 25px 0; font-size: 14px; color: #a0aec0;">Please enter your 5-digit access code to view available plans.</p> 
+            <input type="password" id="gatekeeper-input" maxlength="5" placeholder="• • • • •" style="width: 100%; padding: 15px; font-size: 24px; text-align: center; letter-spacing: 8px; border: 2px solid #444444; border-radius: 8px; background: #111111; color: #ffffff; outline: none; margin-bottom: 20px; box-sizing: border-box;"> 
+            <button onclick="checkAccessCode()" style="width: 100%; padding: 14px; font-size: 16px; font-weight: bold; background: #ff7f27; color: #ffffff; border: none; border-radius: 8px; cursor: pointer; transition: background 0.2s;">Unlock Site</button> 
+            <div id="gatekeeper-error" style="color: #ff4d4d; font-size: 14px; font-weight: bold; margin-top: 15px; display: none;">❌ Invalid Access Code. Try again.</div> 
+        </div> 
+    </div> 
 
-    <!-- ===== MAIN CONTENT LAYER ===== -->
-    <div class="max-w-4xl mx-auto px-4 py-12">
-        <header class="text-center mb-12">
-            <h1 class="text-4xl font-extrabold text-[#30b4c5] mb-4">Peace of Mind Starts Here</h1>
-            <p class="text-xl text-gray-300">Affordable, fast-access protection plans designed to cover what you need most.</p>
-        </header>
-
-        <!-- ===== PLANS & BROCHURES SECTION ===== -->
-        <section class="bg-gray-800 rounded-xl p-8 border border-gray-700 shadow-xl mb-12">
-            <h2 class="text-2xl font-bold text-[#ff7f27] mb-6"><i class="fas fa-file-pdf mr-2"></i>Available Plans & Product Brochures (PDF)</h2>
-            <p class="text-gray-300 mb-6">Review official guidelines, coverage schedules, and protection benchmarks below:</p>
+    <script> 
+        function checkAccessCode() { 
+            const input = document.getElementById("gatekeeper-input").value; 
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <!-- PDF Link 1 -->
-                <a href="assets/medicare_option_g.pdf" target="_blank" class="flex items-center p-4 bg-gray-900 hover:bg-gray-700 border border-gray-700 rounded-lg transition group">
-                    <div class="text-red-500 text-3xl mr-4 group-hover:scale-110 transition"><i class="fas fa-file-pdf"></i></div>
-                    <div>
-                        <h4 class="font-bold text-white group-hover:text-[#30b4c5] transition">Medicare Option G Layout</h4>
-                        <p class="text-sm text-gray-400">Guaranteed Issue Supplement Guidelines</p>
-                    </div>
-                </a>
+            // CHANGE '12345' below to your working 5-digit code! 
+            if (input === "12345") { 
+                document.getElementById("site-gatekeeper").style.display = "none"; 
+            } else { 
+                document.getElementById("gatekeeper-error").style.display = "block"; 
+                document.getElementById("gatekeeper-input").value = ""; 
+            } 
+        } 
 
-                <!-- PDF Link 2 -->
-                <a href="assets/cancer_protection_plan.pdf" target="_blank" class="flex items-center p-4 bg-gray-900 hover:bg-gray-700 border border-gray-700 rounded-lg transition group">
-                    <div class="text-red-500 text-3xl mr-4 group-hover:scale-110 transition"><i class="fas fa-file-pdf"></i></div>
-                    <div>
-                        <h4 class="font-bold text-white group-hover:text-[#30b4c5] transition">Cancer Protection Plans</h4>
-                        <p class="text-sm text-gray-400">$10,000 - $50,000 Cash Benefits Guide</p>
-                    </div>
-                </a>
+        // Allow pressing the "Enter" key to submit the code 
+        document.getElementById("gatekeeper-input").addEventListener("keypress", function(event) { 
+            if (event.key === "Enter") { 
+                checkAccessCode(); 
+            } 
+        }); 
+    </script> 
 
-                <!-- PDF Link 3 -->
-                <a href="assets/critical_illness_brochure.pdf" target="_blank" class="flex items-center p-4 bg-gray-900 hover:bg-gray-700 border border-gray-700 rounded-lg transition group">
-                    <div class="text-red-500 text-3xl mr-4 group-hover:scale-110 transition"><i class="fas fa-file-pdf"></i></div>
-                    <div>
-                        <h4 class="font-bold text-white group-hover:text-[#30b4c5] transition">Critical Illness & Stroke Summary</h4>
-                        <p class="text-sm text-gray-400">Immediate Operational Cash Payout Metrics</p>
-                    </div>
-                </a>
-
-                <!-- PDF Link 4 -->
-                <a href="assets/hospital_confinement_schedule.pdf" target="_blank" class="flex items-center p-4 bg-gray-900 hover:bg-gray-700 border border-gray-700 rounded-lg transition group">
-                    <div class="text-red-500 text-3xl mr-4 group-hover:scale-110 transition"><i class="fas fa-file-pdf"></i></div>
-                    <div>
-                        <h4 class="font-bold text-white group-hover:text-[#30b4c5] transition">Hospital Indemnity Schedule</h4>
-                        <p class="text-sm text-gray-400">Covers Deductibles & Off-Work Expenses</p>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <!-- ===== CALENDLY CONSULTATION CONTAINER ===== -->
-        <section class="bg-gray-800 rounded-xl p-8 border border-gray-700 shadow-xl mb-12">
-            <div class="mb-6 text-center md:text-left">
-                <h2 class="text-2xl font-bold text-[#ff7f27] mb-2"><i class="fas fa-calendar-alt mr-2"></i>Schedule Your Verification Review</h2>
-                <p class="text-gray-300">Book your direct consultation window with an advisor to verify enrollment pathways.</p>
-                <p class="text-sm font-semibold text-[#30b4c5] mt-2">Agent Assignment: Richard Paskowitz – Senior Marketing Director</p>
-            </div>
-
-            <!-- Calendly Embedded Element -->
-            <div class="bg-white rounded-lg overflow-hidden shadow-inner" style="height: 700px;">
-                <div class="calendly-inline-widget" data-url="https://calendly.com" style="min-width:320px; height:100%;"></div>
-            </div>
-            <script type="text/javascript" src="https://calendly.com" async></script>
-        </section>
-
-        <!-- ===== REGIONAL PLATFORM FOOTER ===== -->
-        <footer class="text-center pt-8 border-t border-gray-800 text-gray-500 text-sm">
-            <p class="mb-2">&copy; 2026 All Rights Reserved | Privacy Protection Secure Matrix</p>
-            <p>Inquiries: <a href="mailto:InsuranceHelp4u2@proton.me" class="text-[#30b4c5] hover:underline">InsuranceHelp4u2@proton.me</a></p>
-        </footer>
-    </div>
-
-    <!-- ===== LOGIC VERIFICATION SCRIPT ===== -->
-    <script>
-    (function() {
-        const inputField = document.getElementById("gatekeeper-input");
-        const unlockButton = document.getElementById("unlock-btn");
-        const gatePanel = document.getElementById("site-gatekeeper");
-        const errorDisplay = document.getElementById("gatekeeper-error");
-
-        function validateCode(e) {
-            if (e) e.preventDefault();
+    <!-- ===== PREVIOUS WEBSITE CONTENT ===== -->
+    <main class="min-h-screen flex flex-col items-center justify-center px-4 py-12"> 
+        <div class="max-w-2xl text-center"> 
             
-            if (inputField.value === "12345") {
-                gatePanel.remove(); 
-            } else {
-                errorDisplay.style.display = "block";
-                inputField.value = "";
-                inputField.focus();
-            }
-        }
+            <!-- Logo element repaired from broken header text -->
+            <div class="flex justify-center mb-6">
+                <a href="assets/favicon-32x32.png" class="logo">
+                    <img src="assets/favicon-32x32.png" alt="Logo" width="32" height="32">
+                </a>
+            </div>
 
-        unlockButton.addEventListener("click", validateCode);
-        inputField.addEventListener("keydown", function(event) {
-            if (event.key === "Enter") {
-                event.preventDefault();
-                validateCode(event);
-            }
-        });
-    })();
-    </script>
-</body>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Peace of Mind Starts Here</h1> 
+            <p class="text-lg text-gray-300 mb-8">Affordable, fast-access protection plans designed to cover what YOU need most — without the confusion, pressure, or fine print.</p> 
+            
+            <!-- Plan Documents Container -->
+            <div class="bg-gray-800 border border-gray-700 rounded-lg p-6 mb-6 text-left"> 
+                <div class="pdf-links-container" style="font-family: 'Roboto', sans-serif;"> 
+                    <h3 class="text-xl font-semibold mb-4 text-center text-blue-400">Available Plans & Product Brochures (PDF)</h3> 
+                    <ul style="list-style-type: none; padding-left: 0; line-height: 1.8;"> 
+                        <li style="margin-bottom: 16px;"> 
+                            <i class="fas fa-file-pdf" style="color: #d9534f; margin-right: 8px;"></i> 
+                            <a href="assets/documents/F4931(09)-R26.pdf" target="_blank" style="font-weight: 500; color: #4fa8ff; text-decoration: underline;"> Medicare Supplement Option G (Medigap for Parts A & B) </a> 
+                            <br><span class="text-sm text-gray-400 ml-6">Guaranteed Issue Plans — 3 Easy Health Questions</span>
+                        </li> 
+                        <li style="margin-bottom: 16px;"> 
+                            <i class="fas fa-file-pdf" style="color: #d9534f; margin-right: 8px;"></i> 
+                            <a href="assets/documents/FC901.pdf" target="_blank" style="font-weight: 500; color: #4fa8ff; text-decoration: underline;"> Cancer Plans (Lump-Sum Payouts of $10K-$50K) </a> 
+                        </li> 
+                        <li style="margin-bottom: 16px;"> 
+                            <i class="fas fa-file-pdf" style="color: #d9534f; margin-right: 8px;"></i> 
+                            <a href="assets/documents/CILS_MPB.pdf" target="_blank" style="font-weight: 500; color: #4fa8ff; text-decoration: underline;"> Critical Illness & Hospital Coverage for Unexpected Costs </a> 
+                        </li> 
+                    </ul> 
+                </div> 
+            </div>
+
+            <!-- Exposure Comparison Container -->
+            <div class="bg-gray-800 border border-gray-700 rounded-lg p-6 mb-6 text-left"> 
+                <div class="pdf-links-container" style="font-family: 'Roboto', sans-serif;"> 
+                    <h4 class="text-lg font-semibold mb-4 text-center text-blue-400">Look at the exposure you remove</h4> 
+                    <ul style="list-style-type: none; padding-left: 0; line-height: 1.8;"> 
+                        <li style="margin-bottom: 15px;"> 
+                            <i class="fas fa-file-pdf" style="color: #d9534f; margin-right: 8px;"></i> 
+                            <a href="assets/documents/F3095-2026.pdf" target="_blank" style="font-weight: 500; color: #4fa8ff; text-decoration: underline;"> Exposure Comparison of Medicare Part A & B </a> 
+                        </li> 
+                    </ul>
+                </div> 
+            </div>
+
+            <!-- Profile and Contact Information -->
+            <p class="text-base text-gray-300 mt-6 font-medium">Richard Paskowitz – Senior Marketing Director</p>
+            <p class="text-sm text-gray-400 mb-6">No obligation. No pressure. Just honest answers from someone who gets it.</p> 
+
+            <!-- Booking Section -->
+            <div class="bg-gray-800 border border-gray-700 rounded-lg p-6 mb-6 flex justify-center"> 
+                <h2 class="text-xl font-semibold">
+                    <a href="https://calendly.com/contactaidepot/30min" target="_blank" class="bg-lime-500 hover:bg-lime-600 text-white font-bold py-3 px-6 rounded-full transition inline-block">📅 Book a Free 30 Minute Consultation</a> 
+                </h2> 
+            </div> 
+
+            <!-- Disclaimers and Footer -->
+            <p class="text-xs text-gray-500 mt-6 leading-relaxed">The purpose of this communication is the solicitation of insurance. Policies and benefits may vary by state and have some limitations and exclusions. <br>A licensed insurance agent or producer will provide additional information upon request.</p> 
+            
+            <footer class="mt-12 text-xs text-gray-600"> 
+                &copy; 2025 All rights reserved • <a href="mailto:insurancehelp4u2@proton.me" class="hover:underline text-gray-500">InsuranceHelp4u2@proton.me</a> 
+            </footer> 
+        </div> 
+    </main> 
+</body> 
 </html>
